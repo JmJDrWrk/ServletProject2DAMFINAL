@@ -45,6 +45,10 @@ public class SQLManager {
     private static final String SQL_INSERT = 
             "INSERT INTO gpus(modelname,company,year,memory,power,socket,price,type,imageurl) VALUES(?,?,?,?,?,?,?,?,?)";
     
+    
+    private static final String DELETE_GPU_BY_ID =
+            "DELETE FROM gpus WHERE id =?";
+    
     public static List<Gpu> getGpus(){
         
         String imageBASE_NAME = "RESOURCES/";
@@ -267,4 +271,29 @@ public class SQLManager {
         return rows;
     }
     
+    public static int deleteGpuById(int id) {
+        System.out.println("Deleting GPU with id " + id);
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement(DELETE_GPU_BY_ID);
+            stmt.setInt(1, id);
+            rows = stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally{ 
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(SQLManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return rows;
+    }
+
+
 }

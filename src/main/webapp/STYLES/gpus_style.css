@@ -48,3 +48,15 @@ body {
 .eachTable table tr td.content{
     color: rgb(226, 226, 226);
 }
+
+#subheader {
+
+}
+
+#searchbox {
+    /*position: absolute;*/
+    background-color: #141e30;
+    color: rgb(0, 255, 179);
+    
+}
+

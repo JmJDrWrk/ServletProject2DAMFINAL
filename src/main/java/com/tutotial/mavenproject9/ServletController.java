@@ -68,7 +68,13 @@ public class ServletController extends HttpServlet {
             request.getRequestDispatcher(jspEditar).forward(request, response);
             
         }else if(request_value.equals("deleteGpu")){
-            String jspEditar = "/index.jsp";
+            
+            System.out.println("Deleting gpu");
+            //Call delete
+            SQLManager.deleteGpuById(Integer.parseInt(request.getParameter("id")));
+           
+            //recargando página
+            String jspEditar = "/clientes.jsp";
             request.getRequestDispatcher(jspEditar).forward(request, response);
             
         }else{
@@ -154,14 +160,15 @@ public class ServletController extends HttpServlet {
       
                 
                 
-            }/*else if(spc.equals("cancel")){
+            }else if(spc.equals("cancel")){
                 //Return to list_attempt1.jsp
                 System.out.println("Edit canceled");
-                
+                response.sendRedirect("http://localhost:8080/mavenproject9/ServletController?");
                 
             }else{System.out.println("[WARNING] Untracked parameters at OneditGpu mode");
                 //Redirect to error .jsp
-            }  */
+                response.sendRedirect("https://blog.fluidui.com/content/images/2019/01/imageedit_1_9273372713.png");
+            }  
             
         }else{System.out.println("[ERROR/WARNING] Untracked parameters at doPost() method");}
         }catch(Exception e){System.out.println("[Error] getParameter() failed");}

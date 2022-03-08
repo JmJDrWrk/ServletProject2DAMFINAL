@@ -1,9 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<div class="col-md-3">
-    <a  href="${pageContext.request.contextPath}/ServletController?accion=AddGpu">Add</a>
-</div>
+
 <section id="clientes">
     
     <!--
@@ -23,12 +21,20 @@ pageEncoding="UTF-8"%>
             font-size: 16px;
         }
 
+        #subheader {
+            
+        }
 
+        #searchbox {
+            /*position: absolute;*/
+            border: 1px solid black;
+            background-color: #141e30;
+            margin-left: 500px;
+        }
 
 	</style>
 
-    <script type = "text/javascript">  
-
+    <script type = "text/javascript">
         //CALL THIS ON WINDOW LOAD
         window.onload = function() {
             console.log("Function Called On Load")
@@ -46,6 +52,7 @@ pageEncoding="UTF-8"%>
 
         };
 
+        //SHOW
         function myfunction(that){   
             //alert("?hide?");
             //document.getElementById("hiddeableElement").style.display = "none";
@@ -78,10 +85,14 @@ pageEncoding="UTF-8"%>
         function findString(){
             var searchbox = document.getElementById("searchbox");
             console.log("Looking for " + searchbox.value);
+            
+            /*
+            if(searchbox.value = "SEARCH"){
+                searchbox.value = "";
+            } */ 
 
             var key = searchbox.value;
-
-            
+       
             for (let i = 1; i < 100; i++) {
                 try {//Found element by id
                     var x = document.getElementById("eachcard_"+i);
@@ -107,6 +118,36 @@ pageEncoding="UTF-8"%>
 
         }
 
+        //EXPORT DATA TO A MYSQL USEFUL IMPORT 
+        //code from https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
+        
+        /*function download(filename, text) {
+
+            var filename = "download.txt";
+            var text = "Code from https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server";
+            var other = ""
+            //Read local data
+            fetch("C:/Users/Jaime/Documents/NetBeansProjects/mavenproject9/salida.txt")
+                .then(response => response.text())
+                .then(text => other = text)
+                
+
+
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+
+
+
+        }*/
+
 </script> 
 
     <div class="container">
@@ -116,7 +157,30 @@ pageEncoding="UTF-8"%>
                 <div class="card" id="card">
                     <div class="card-header" id="card-header">
                         <h4> Listado de Gpus</h4>
-                        <input type="text" onKeyup="findString()" id='searchbox'>
+
+                        <div id="subheader">
+                            <a  href="${pageContext.request.contextPath}/ServletController?accion=AddGpu">
+                                <button type="button" class="btn btn-outline-warning">Add</button>
+                            </a>
+
+                            <a  href="https://github.com/">
+                                <button type="button" class="btn btn-outline-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg>
+                                </button>
+                            </a>
+                            <a>
+                                <button type="button" class="btn btn-outline-warning" onclick="download()">
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg> -->
+                                </button>
+                            </a>
+
+                            <input type="text" onKeyup="findString()" id='searchbox' value="SEARCH">
+                        </div>
+
                     </div>
                     <div class="DivOfRegs">
                         <c:forEach var="gpu" items="${gpus}">
@@ -183,7 +247,7 @@ pageEncoding="UTF-8"%>
                                     </div>
 
                                     <hr>
-                                    <a  href="${pageContext.request.contextPath}/ServletController?accion=editGpu">Delete</a>
+                                    <a  href="${pageContext.request.contextPath}/ServletController?accion=deleteGpu&id=${gpu.id}">Delete</a>
                                     <a  href="${pageContext.request.contextPath}/ServletController?accion=editGpu&id=${gpu.id}" class="btn btn-primary">${gpu.price} $</a>
                                 </div>
                             </div>
