@@ -11,6 +11,7 @@ pageEncoding="UTF-8"%>
     <h1>${usuarios.size()}</h1>
     <h1>${usuarios.get(0).toString()}</h1>
     -->
+    
     <style type="text/css">
         #cardtitle {
             font-size: 12px;
@@ -21,6 +22,8 @@ pageEncoding="UTF-8"%>
 
             font-size: 16px;
         }
+
+
 
 	</style>
 
@@ -71,30 +74,64 @@ pageEncoding="UTF-8"%>
             //alert("jaime2")
             }  
 
+        //SCRIPT FOR HIDDING ELEMENT NOT IN SEARCHABLE
+        function findString(){
+            var searchbox = document.getElementById("searchbox");
+            console.log("Looking for " + searchbox.value);
+
+            var key = searchbox.value;
+
             
+            for (let i = 1; i < 100; i++) {
+                try {//Found element by id
+                    var x = document.getElementById("eachcard_"+i);
+                    //get name about
+                    var html = x.innerHTML;
+                    var name = html.split("<h5")[1].split("</h5>")[0];
+                    var another = document.getElementById("cardtitle_" + i);
+                    var realmodelname =  another.textContent.trim() ;
+                    //console.log("\t" + x.innerHTML + "\nEHHHH\n" + name + "\nANOTHER\n" + another.innerHTML + "\nlast\n" + another.textContent.trim() + "\nlastlast\n" + another.innerText);
+                    console.log("[key] " + key);
+                    if(!realmodelname.includes(key)){
+                        x.style.display = "none";
+                    }else{
+                        x.style.display = "block";
+                    }
+
+                }
+                catch (e) { //If element couldn´t be found
+                    console.log("\t[ERROR] FindById(" + i + ")");
+                }
+            }
+
+
+        }
+
 </script> 
 
     <div class="container">
         <div class="row">
             <!--dejaremos 3 columnas a la derecha para aï¿½adir el total y nï¿½mero de clientes-->
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">
+            <div class="col-md-9" id="mainContainer">
+                <div class="card" id="card">
+                    <div class="card-header" id="card-header">
                         <h4> Listado de Gpus</h4>
+                        <input type="text" onKeyup="findString()" id='searchbox'>
                     </div>
                     <div class="DivOfRegs">
                         <c:forEach var="gpu" items="${gpus}">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card text-white bg-dark mb-3" style="width: 18rem;" id="eachcard_${gpu.id}">
                                 <img class="card-img-top" src="${gpu.imageurl}" alt="${gpu.imageurl}">
                                     <div class="card-body">
-                                    <h5 class="card-title" id="cardtitle" onclick='myfunction(this)' tag="${gpu.id}">${gpu.modelname}</h5>
+                                   
+                                    <h5 class="card-title"  moai="${gpu.modelname}" id="cardtitle_${gpu.id}"  onclick='myfunction(this)' tag="${gpu.id}">${gpu.modelname}</h5>
                                     
                                     <!-- <p id="divIDNo${gpu.id}">EHHHH</p> -->
 
                                     <!-- HIDDEN/NOTHIDDEN -->
-                                    <div id="hiddeableElement_${gpu.id}">
+                                    <div id="hiddeableElement_${gpu.id}" class="eachTable">
 
-                                        <table class="table table">
+                                        <table class="table table-condensed table-hover table-dark">
                                             <thead>
                                               <tr>
                                                 <th scope="col">property</th>
@@ -104,33 +141,33 @@ pageEncoding="UTF-8"%>
                                             <tbody>
 
                                               <tr>
-                                                <td>COMPANY</td>
-                                                <td>${gpu.company}</td>
+                                                <td class="title">COMPANY</td>
+                                                <td class="content">${gpu.company}</td>
                                               </tr>
 
                                               <tr>
-                                                <td>YEAR</td>
-                                                <td>${gpu.year}</td>
+                                                <td class="title">YEAR</td>
+                                                <td class="content">${gpu.year}</td>
                                               </tr>
 
                                               <tr>
-                                                <td>MEMORY</td>
-                                                <td>${gpu.memory}</td>
+                                                <td class="title">MEMORY</td>
+                                                <td class="content">${gpu.memory}</td>
                                               </tr>
 
                                               <tr>
-                                                <td>POWER</td>
-                                                <td>${gpu.power}</td>
+                                                <td class="title">POWER</td>
+                                                <td class="content">${gpu.power}</td>
                                               </tr>
 
                                               <tr>
-                                                <td>TYPE</td>
-                                                <td>${gpu.type}</td>
+                                                <td class="title">TYPE</td>
+                                                <td class="content">${gpu.type}</td>
                                               </tr>
 
                                               <tr>
-                                                <td>SOCKET</td>
-                                                <td>${gpu.socket}</td>
+                                                <td class="title">SOCKET</td>
+                                                <td class="content">${gpu.socket}</td>
                                               </tr>
 
                                             </tbody>
@@ -144,8 +181,6 @@ pageEncoding="UTF-8"%>
                                         <p  class="card-text" >type ${gpu.type}</p>
                                         <p  class="card-text" >socket ${gpu.socket}</p> -->
                                     </div>
-
-
 
                                     <hr>
                                     <a  href="${pageContext.request.contextPath}/ServletController?accion=editGpu">Delete</a>

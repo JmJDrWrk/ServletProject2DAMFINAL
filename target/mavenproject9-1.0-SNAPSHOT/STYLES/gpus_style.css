@@ -17,3 +17,34 @@ body {
     margin: 25px;
 }
 
+#mainContainer #card{
+    background-color: rgba(70, 70, 70, 0.315);
+    border-radius: 20px;
+}
+
+#mainContainer #card #card-header{
+    background-color: rgba(51, 51, 51, 0.616);
+    border-radius: 20px;
+}
+
+#mainContainer #card #card-header h4{
+    text-align: center;
+    color: rgb(243, 243, 243);
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-size: 54px;
+    font-weight: 300;
+    line-height: 58px;
+    margin: 0 0 0px;
+}
+
+/* FOR CARDS */
+
+
+.eachTable table tr td.title{
+    color: rgb(160, 160, 160);
+    font-weight: bold;
+}
+.eachTable table tr td.content{
+    color: rgb(226, 226, 226);
+}
