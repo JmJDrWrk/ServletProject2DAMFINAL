@@ -9,29 +9,30 @@
         <link href="STYLES/index_style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <form action="/mavenproject9/ServletController" method="get">
-            <button type="text" class="user-email" id="email" placeholder="Email" autocomplete="off">Log In</button>
-        </form>
+
         <div class="login-box">
           <h2>Login</h2>
-          <form>
+          <form action="/mavenproject9/ServletController" method="post">
             <div class="user-box">
-              <input type="text" name="" required="">
+              <input type="text" name="user" required="">
               <label>Username</label>
             </div>
             <div class="user-box">
-              <input type="password" name="" required="">
+              <input type="password" name="pass" required="">
               <label>Password</label>
             </div>
-            <a href="#">
+
+            <a href="http://localhost:8080/mavenproject9/ServletController?">
               <span></span>
               <span></span>
               <span></span>
               <span></span>
               Submit
             </a>
+
           </form>
+
+
         </div>
     </body>
 </html>

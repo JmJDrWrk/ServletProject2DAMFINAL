@@ -76,7 +76,7 @@ public class ServletController extends HttpServlet {
             //recargando página
             String jspEditar = "/clientes.jsp";
             request.getRequestDispatcher(jspEditar).forward(request, response);
-            
+        
         }else{
             String jspEditar = "/clientes.jsp";
             request.getRequestDispatcher(jspEditar).forward(request, response);    
@@ -94,8 +94,8 @@ public class ServletController extends HttpServlet {
 
         
         try{
-            String request_value = request.getParameter("power");
-            System.out.println("[doPost()] accion -- " + request_value);
+            String request_value = request.getParameter("user");
+            System.out.println("[doPost()] user -- " + request_value);
             
             String spc = request.getParameter("btt");
             System.out.println("spc -- " + spc);
@@ -163,6 +163,17 @@ public class ServletController extends HttpServlet {
             }else if(spc.equals("cancel")){
                 //Return to list_attempt1.jsp
                 System.out.println("Edit canceled");
+                response.sendRedirect("http://localhost:8080/mavenproject9/ServletController?");
+                
+            }else if(spc.equals("login")){
+                
+                System.out.println("Login via DoPost()");
+                
+                //Get user and pass
+                try{System.out.println("Rq: " + request.getParameter("user"));
+                }catch(Exception e){System.out.println("[ERROR] parameter user not found");}
+                
+                //recargando página
                 response.sendRedirect("http://localhost:8080/mavenproject9/ServletController?");
                 
             }else{System.out.println("[WARNING] Untracked parameters at OneditGpu mode");
