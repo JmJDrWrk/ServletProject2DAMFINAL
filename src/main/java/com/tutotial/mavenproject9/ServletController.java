@@ -67,8 +67,7 @@ public class ServletController extends HttpServlet {
             String jspEditar = "/edit.jsp";
             request.getRequestDispatcher(jspEditar).forward(request, response);
             
-        }else if(request_value.equals("deleteGpu")){
-            
+        }else if(request_value.equals("deleteGpu")){  
             System.out.println("Deleting gpu");
             //Call delete
             SQLManager.deleteGpuById(Integer.parseInt(request.getParameter("id")));
@@ -77,6 +76,34 @@ public class ServletController extends HttpServlet {
             String jspEditar = "/clientes.jsp";
             request.getRequestDispatcher(jspEditar).forward(request, response);
         
+        }else if(request_value.equals("export")){
+            //EXPORT DATABASE
+            String gpu_inserts = SQLManager.exportGpu();
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            try {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet NewServlet</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<style>body {background-color: rgb(26, 26, 26);color: rgb(191, 191, 191);}</style>");
+                out.println("<style>textarea {margin-top: 10px;margin-left: 50px;width: 500px;height: 100px;-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none;-moz-border-top-colors: none;background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);border-color: -moz-use-text-color #ffffff #ffffff -moz-use-text-color;border-image: none;border-radius: 6px 6px 6px 6px;border-style: none solid solid none;border-width: medium 1px 1px medium;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;color: #555555;font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-size: 1em;line-height: 1.4em;padding: 5px 8px;transition: background-color 0.2s ease 0s;}</style>");
+                out.println("<h4>DATABASE CREATION</h1>");
+                out.println("<textarea>" + "!NULL" + "</textarea>");
+                out.println("<h4>TABLE CREATION</h1>");
+                out.println("<textarea>" + "!NULL"+ "</textarea>");
+                out.println("<h4>TABLE INSERTS</h1>");
+                out.println("<textarea>" + gpu_inserts + "</textarea>");
+                out.println("</body>");
+                out.println("</html>");
+            } finally {
+                out.close();
+            }
+
+            
         }else{
             String jspEditar = "/clientes.jsp";
             request.getRequestDispatcher(jspEditar).forward(request, response);    

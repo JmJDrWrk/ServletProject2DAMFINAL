@@ -113,7 +113,7 @@ public class Gpu {
 
     @Override
     public String toString() {
-        return "Gpu{" + "id=" + id + ", modelname=" + modelname + ", company=" + company + ", year=" + year + ", memory=" + memory + ", power=" + power + ", socket=" + socket + ", price=" + price + ", type=" + type + ", imageurl=" + imageurl + '}';
+        return "('" + modelname + "','" + company + "','" + year + "','" + memory + "','" + power + "'," + socket + "','" + price + "','" + type + "','" + imageurl+"')";
     }
     
     
