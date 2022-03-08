@@ -1,0 +1,1 @@
+(function(){$(window).on('load',function(){$(document).on('click','.js-toggler-list',function(e){if($(window).width()<=768){var $_invoker=$(e.target);$_invoker.siblings('ul').slideToggle();$_invoker.toggleClass('is-opened');e.preventDefault();}})});}(jQuery));

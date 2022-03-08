@@ -1,0 +1,41 @@
+/*!
+TAG V5.74.7321, smct.tag-pccomponentes.com 
+Copyright 2012-2022 Smarter Click Technology Ltd
+*/
+(function(w,d){var ls_name = 'smc_off_beacon_blocked',ls_name2 = 'smc_off_loaded';
+if (!localStorage.getItem(ls_name2)) {localStorage.setItem(ls_name2,1); return;}
+if (localStorage.getItem(ls_name)) {return;}
+var h = d.getElementsByTagName("head")[0]
+, j = d.createElement('script');
+j.type = 'text/javascript';
+j.src = 'https://js.smct.io/e/events-1.4.8.min.js';
+j.charset = 'utf-8';
+h.appendChild(j);
+if (typeof w['$smcT5'] !== 'object') {
+w['$smcT5'] = {}
+}
+w['$smcT5'].TrackerV2 = {};
+var timeout = setTimeout(function(){localStorage.setItem(ls_name,1);},1000);
+j.onload = function () {
+clearTimeout(timeout);
+localStorage.removeItem(ls_name);
+if (typeof $smcT5.TrackerV2.plugin.start === 'function' && typeof $smcT5.TrackerV2.plugin.event === 'function') {
+$smcT5.TrackerV2.plugin.start({
+IdentityPoolId: 'eu-west-1:9a28cbde-383e-4c5b-bddd-3b37a9a7d1be',
+callback: function () {
+var lng = (navigator && navigator.language) || '';
+var hrf = (w && w.location && w.location.href) || '';
+var drf = (d && d.referrer) || '';
+$smcT5.TrackerV2.plugin.event({
+type: 'overlay',
+payload: { 
+tid:3357, ipb: 0, aid: 28, did: 160337, spv: 0, tpv: 0, cid: 0, ref: 0, uid: 7, lng: lng, hrf: hrf, drf: drf}
+})
+},
+fallbackEvent: function (event) { }
+});
+}
+};
+j.onerror = function () {
+localStorage.setItem(ls_name,1);
+};})(window,document);/* Tag is OFF */

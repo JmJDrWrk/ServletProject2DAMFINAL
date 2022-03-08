@@ -1,0 +1,1 @@
+$(document).ready(function(){$(window).on("load",function(){var n=$("#pager");0<n.length&&n.addClass("hidden-xs-up")})});

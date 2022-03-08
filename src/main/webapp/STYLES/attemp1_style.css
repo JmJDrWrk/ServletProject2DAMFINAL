@@ -1,0 +1,81 @@
+html {
+    height: 100%;
+ }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}
+
+
+.DivOfRegs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.DivOfRegse{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 100%;
+    padding: 40px;
+    margin-top: 30px;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    border-color: aliceblue;
+    /*background-color: aqua;*/
+    /*display: flex;
+    flex-direction: column;
+    align-items: center;*/
+   /* display: flex;*/
+    /*flex-direction: column;*/
+    /*flex-wrap: wrap;*/
+    /*justify-content: space-around;*/
+   /* align-content: stretch;*/
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.OneRege {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 200px ;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 20px;
+    padding: 40px;
+    margin: 10px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    color: white;
+}
+
+.DivOfRegse div {
+
+}
+
+.regImge {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100px;
+}
+
+
+
+
+/*
+.DivOfRegs > div {
+    flex: 1 1 200px;
+}*/
+
+

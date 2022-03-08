@@ -1,0 +1,16 @@
+
+1. PROBLEMA DE ENCODING MySQL--JAVA(jsp)
+
+    Para poder leer de la encode 'utf8mb4_general_ci' en mysql a java a través del jsp
+    incluyo la etiqueta 
+
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
+    en los jsp 'clientes.jsp' y 'list_attemp1.jsp' PERO SOLO ES NECESARIO EN clientes.jsp
+
+2. SCRIPT gpus table
+
+    CREATE TABLE `mywebproject`.`gpus` ( `id` INT(11) NOT NULL , `modelname` VARCHAR(250) NOT NULL , `company` VARCHAR(250) NOT NULL , `year` INT(11) NOT NULL , `memory` FLOAT(11) NOT NULL , `power` FLOAT(11) NOT NULL , `socket` VARCHAR(50) NOT NULL , `price` FLOAT(11) NOT NULL , `type` VARCHAR(50) NOT NULL , `imageurl` VARCHAR(250) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+    

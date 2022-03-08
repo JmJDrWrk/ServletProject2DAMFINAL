@@ -1,0 +1,1 @@
+!function(t,o){var c={countSelector:"#totalArticles"};t.PccCountArticles=function(t){this._options=o.extend({},c,t),this.$count=o(this._options.countSelector)},t.PccCountArticles.prototype.set=function(t){this.$count.html(t)}}(window,jQuery);
