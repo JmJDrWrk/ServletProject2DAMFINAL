@@ -174,7 +174,7 @@ public class ServletController extends HttpServlet {
                 System.out.println("imageurl = " + utf8EncodedString);
                 
                 //Temporal Arrangement -- Error image if null field
-                if(imageurl.contains("?")){imageurl=gpu.getImageurl();}
+                if(imageurl.contains("â")){imageurl=gpu.getImageurl();}
                 if(imageurl==null || imageurl=="default"){gpu.setImageurl("https://wpdirecto.com/wp-content/uploads/2017/08/solucionar-error-wordpress.jpg");}
                 
                                                                                                             //utf error solve it

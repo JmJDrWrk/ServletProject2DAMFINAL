@@ -33,6 +33,19 @@ pageEncoding="UTF-8"%>
             margin-left: 500px;
         }
 
+        .DivOfRegs{
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+            grid-gap: 20px;
+        }
+
+        .foreachelement {
+            /*background-color: yellow;*/
+            /* display: flex;
+            flex-direction: row;
+            flex-wrap: wrap; */
+        }
+
 	</style>
 
     <script type = "text/javascript">
@@ -104,7 +117,7 @@ pageEncoding="UTF-8"%>
                     var realmodelname =  another.textContent.trim() ;
                     //console.log("\t" + x.innerHTML + "\nEHHHH\n" + name + "\nANOTHER\n" + another.innerHTML + "\nlast\n" + another.textContent.trim() + "\nlastlast\n" + another.innerText);
                     console.log("[key] " + key);
-                    if(!realmodelname.includes(key)){
+                    if(!realmodelname.toLowerCase().includes(key.toLowerCase())){
                         x.style.display = "none";
                     }else{
                         x.style.display = "block";
@@ -199,14 +212,14 @@ pageEncoding="UTF-8"%>
                             </a>
 
                             <a  href="https://github.com/">
-                                <button type="button" class="btn btn-outline-warning">
+                                <button type="button" class="btn btn-outline-light">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                                     </svg>
                                 </button>
                             </a>
                             <a href="${pageContext.request.contextPath}/ServletController?accion=export">
-                                <button type="button" class="btn btn-outline-warning" onclick="download()">
+                                <button type="button" class="btn btn-outline-danger" onclick="download()">
                                     <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                                     </svg> -->
@@ -214,7 +227,7 @@ pageEncoding="UTF-8"%>
                                 </button>
                             </a>
                             <a  href="${pageContext.request.contextPath}/ServletController?accion=console">
-                                <button type="button" class="btn btn-outline-warning">Console</button>
+                                <button type="button" class="btn btn-outline-success">Console</button>
                             </a>
                             <input type="text" onKeyup="findString()" id='searchbox' value="">
                         </div>
@@ -222,6 +235,7 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div class="DivOfRegs">
                         <c:forEach var="gpu" items="${gpus}">
+                        <div class="foreachelement">
                             <div class="card text-white bg-dark mb-3" style="width: 18rem;" id="eachcard_${gpu.id}">
                                 <img class="card-img-top" src="${gpu.imageurl}" alt="${gpu.imageurl}">
                                     <div class="card-body">
@@ -252,35 +266,33 @@ pageEncoding="UTF-8"%>
                                                     </button>
                                                 </td>
 
-                                                <!-- Button trigger modal -->
+                                                    <!-- Button trigger modal -->
+                                                    </tr>
 
-  
-                                              </tr>
+                                                    <tr>
+                                                        <td class="title">YEAR</td>
+                                                        <td class="content">${gpu.year}</td>
+                                                    </tr>
 
-                                              <tr>
-                                                <td class="title">YEAR</td>
-                                                <td class="content">${gpu.year}</td>
-                                              </tr>
+                                                    <tr>
+                                                        <td class="title">MEMORY</td>
+                                                        <td class="content">${gpu.memory}</td>
+                                                    </tr>
 
-                                              <tr>
-                                                <td class="title">MEMORY</td>
-                                                <td class="content">${gpu.memory}</td>
-                                              </tr>
+                                                    <tr>
+                                                        <td class="title">POWER</td>
+                                                        <td class="content">${gpu.power}</td>
+                                                    </tr>
 
-                                              <tr>
-                                                <td class="title">POWER</td>
-                                                <td class="content">${gpu.power}</td>
-                                              </tr>
+                                                    <tr>
+                                                        <td class="title">TYPE</td>
+                                                        <td class="content">${gpu.type}</td>
+                                                    </tr>
 
-                                              <tr>
-                                                <td class="title">TYPE</td>
-                                                <td class="content">${gpu.type}</td>
-                                              </tr>
-
-                                              <tr>
-                                                <td class="title">SOCKET</td>
-                                                <td class="content">${gpu.socket}</td>
-                                              </tr>
+                                                    <tr>
+                                                        <td class="title">SOCKET</td>
+                                                        <td class="content">${gpu.socket}</td>
+                                                    </tr>
 
                                             </tbody>
                                         </table>
@@ -296,9 +308,10 @@ pageEncoding="UTF-8"%>
 
                                     <hr>
                                     <a  href="${pageContext.request.contextPath}/ServletController?accion=deleteGpu&id=${gpu.id}">Delete</a>
-                                    <a  href="${pageContext.request.contextPath}/ServletController?accion=editGpu&id=${gpu.id}" class="btn btn-primary">${gpu.price} $</a>
+                                    <a  href="${pageContext.request.contextPath}/ServletController?accion=editGpu&id=${gpu.id}" class="btn btn-primary" id="pricebutton">${gpu.price} $</a>
                                 </div>
                             </div>
+                        </div>
                        </c:forEach>
                     </div>
                 </div>
