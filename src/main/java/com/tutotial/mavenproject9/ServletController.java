@@ -4,6 +4,7 @@ package com.tutotial.mavenproject9;
 import DatabaseManager.SQLManager;
 import DatabaseManager.Usuario;
 import DatabaseManager.Gpu;
+import DatabaseManager.Company;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -37,9 +38,10 @@ public class ServletController extends HttpServlet {
 
         // DO GET PREPARED FOR GPU LIST
         List<Gpu> gpu_list = SQLManager.getGpus();
+        List<Company> comp_list = SQLManager.getCompanys();
         request.setAttribute("gpus", gpu_list);
         request.setAttribute("totalgpus", gpu_list.size());
-        
+        request.setAttribute("companys", comp_list);
         //request.getRequestDispatcher("clientes.jsp").forward(request, response); Con esto recargaría otra vez clientes.jsp
         String request_value = request.getParameter("accion");
         processRequest(request, response);
@@ -75,6 +77,9 @@ public class ServletController extends HttpServlet {
             //recargando página
             String jspEditar = "/clientes.jsp";
             request.getRequestDispatcher(jspEditar).forward(request, response);
+            
+        }else if(request_value.equals("showCompany")){
+            
         
         }else if(request_value.equals("export")){
             //EXPORT DATABASE

@@ -51,6 +51,7 @@ with open('src/main/webapp/resources/htmlSource.html', 'r', encoding='utf-8') as
         elif(company=='Biostar')    :idcomp=4   #'Biostar'
         elif(company=='Powercolor') :idcomp=5   #'Powercolor'
         elif(company=='Sapphire')   :idcomp=6   #'Sapphire'
+        elif(company=='Gigabyte')   :idcomp=8   #'Gigabyte'
         else                        :idcomp=7   #unnamed
 
 

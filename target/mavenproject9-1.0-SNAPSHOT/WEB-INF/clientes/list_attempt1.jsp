@@ -21,9 +21,6 @@ pageEncoding="UTF-8"%>
             font-size: 16px;
         }
 
-        #subheader {
-            
-        }
 
         #searchbox {
             /*position: absolute;*/
@@ -39,7 +36,7 @@ pageEncoding="UTF-8"%>
         window.onload = function() {
             console.log("Function Called On Load")
 
-            for (let i = 0; i < 120; i++) {
+            for (let i = 0; i < 200; i++) {
                 try {//Found element by id
                     var x = document.getElementById("hiddeableElement_"+i);
                     //Turn to display none all
@@ -93,7 +90,7 @@ pageEncoding="UTF-8"%>
 
             var key = searchbox.value;
        
-            for (let i = 1; i < 120; i++) {
+            for (let i = 1; i < 200; i++) {
                 try {//Found element by id
                     var x = document.getElementById("eachcard_"+i);
                     //get name about
@@ -120,6 +117,27 @@ pageEncoding="UTF-8"%>
 
         //EXPORT DATA TO A MYSQL USEFUL IMPORT 
         //code from https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
+        
+        //LET ID FOR COMPANY TABLE
+        var id = 0
+        var imageurl = ""
+        function letID(id, company, imageId){
+            console.log('Let ID: ' + id)
+            console.log('Let COMPANY: ' + company)
+            var companymodelnameEl = document.getElementById('modalcompanyname');
+            companymodelnameEl.innerText = company;
+
+            var companyidEl = document.getElementById('modalcompanyid');
+            companyidEl.innerText = 'Company ID ' + id;
+
+            console.log('ImageId: ' + imageId);
+            imageurl = '${companys.get(imageId)}';
+            imageurl = imageurl.innerText;
+
+            console.log('IMAGEURL: ' + imageurl);
+
+        }
+        
         
         /*function download(filename, text) {
 
@@ -149,6 +167,25 @@ pageEncoding="UTF-8"%>
         }*/
 
 </script> 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalcompanyname">NOT WORKING</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modalcompanyid">
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <div class="container">
         <div class="row">
@@ -209,8 +246,18 @@ pageEncoding="UTF-8"%>
                                             <tbody>
 
                                               <tr>
-                                                <td class="title">COMPANY</td>
-                                                <td class="content">${gpu.company}</td>
+                                                <td class="title" >COMPANY</td>
+                                                <td class="content">
+                                                    <!-- <a href="${pageContext.request.contextPath}/ServletController?accion=showCompany&id=${gpu.company}">${gpu.company}</a> -->
+                                                    <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal" 
+                                                        onclick="letID('${gpu.id}','${gpu.company}','${gpu.id}')">
+                                                            ${gpu.company}
+                                                    </button>
+                                                </td>
+
+                                                <!-- Button trigger modal -->
+
+  
                                               </tr>
 
                                               <tr>

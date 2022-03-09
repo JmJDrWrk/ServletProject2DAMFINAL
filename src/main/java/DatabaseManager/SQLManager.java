@@ -28,6 +28,8 @@ public class SQLManager {
     private static final String DELETE_USER = "DELETE FROM usuarios WHERE id = ?";
 
     private static final String SELECT_GPU = "SELECT * FROM gpus";
+    
+    private static final String SELECT_COMPANY = "SELECT * FROM company";
 
     private static final String SELECT_GPU_BY_ID = "SELECT * FROM gpus WHERE id = ?";
 
@@ -365,4 +367,57 @@ public class SQLManager {
 
         return gpu_inserts;
     }
+    
+    
+    public static List<Company> getCompanys() {
+
+        String imageBASE_NAME = "RESOURCES/";
+
+        System.out.println("Listing gpus");
+        List<Company> comp_list = new ArrayList<Company>();
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            String gpu;
+            try {
+                // conn = conn.getConnection();
+                stmt = conn.prepareStatement(SELECT_COMPANY);
+                rs = stmt.executeQuery();
+                while (rs.next()) {
+                    // (`modelname`, `company`, `year`, `memory`, `power`, `socket`, `price`,
+                    // `type`, `imageurl`)
+                    int id = rs.getInt("id");   
+                    String compname = rs.getString("compname");
+                    String imageurl = rs.getString("imageurl");
+
+                    if (imageurl.startsWith("./")) {
+                        imageurl = imageurl.replace("./", imageBASE_NAME);
+                    }
+                    if (imageurl.equals("default") || imageurl == "null") {
+                        imageurl = "https://cdn-icons-png.flaticon.com/512/103/103085.png";
+                    }
+                    //Gpu newGpu = new Gpu(id, modelname, company, year, memory, power, socket, price, type, imageurl);
+
+                    // System.out.println("ImageURL -- " + newGpu.getImageurl());
+
+                    comp_list.add(new Company(id,compname,imageurl));
+
+                }
+                System.out.println("--> " + comp_list);
+
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            } finally {
+                conn.close();
+                conn.close();
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return comp_list;
+    }
+    
+    
 }
