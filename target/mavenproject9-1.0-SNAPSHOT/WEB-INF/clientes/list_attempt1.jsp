@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
         window.onload = function() {
             console.log("Function Called On Load")
 
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 120; i++) {
                 try {//Found element by id
                     var x = document.getElementById("hiddeableElement_"+i);
                     //Turn to display none all
@@ -93,7 +93,7 @@ pageEncoding="UTF-8"%>
 
             var key = searchbox.value;
        
-            for (let i = 1; i < 100; i++) {
+            for (let i = 1; i < 120; i++) {
                 try {//Found element by id
                     var x = document.getElementById("eachcard_"+i);
                     //get name about
@@ -159,6 +159,7 @@ pageEncoding="UTF-8"%>
                         <h4> Listado de Gpus</h4>
 
                         <div id="subheader">
+                            
                             <a  href="${pageContext.request.contextPath}/ServletController?accion=AddGpu">
                                 <button type="button" class="btn btn-outline-warning">Add</button>
                             </a>
@@ -178,8 +179,10 @@ pageEncoding="UTF-8"%>
                                 EXPORT
                                 </button>
                             </a>
-
-                            <input type="text" onKeyup="findString()" id='searchbox' value="SEARCH">
+                            <a  href="${pageContext.request.contextPath}/ServletController?accion=console">
+                                <button type="button" class="btn btn-outline-warning">Console</button>
+                            </a>
+                            <input type="text" onKeyup="findString()" id='searchbox' value="">
                         </div>
 
                     </div>
