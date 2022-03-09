@@ -99,13 +99,16 @@ pageEncoding="UTF-8"%>
         function findString(){
             var searchbox = document.getElementById("searchbox");
             console.log("Looking for " + searchbox.value);
-            
-            /*
-            if(searchbox.value = "SEARCH"){
-                searchbox.value = "";
-            } */ 
-
             var key = searchbox.value;
+
+            //DISABLE GRID MODE DURING SEARCH
+            var gridEl = document.getElementById("DivOfRegs");
+            if(key==""){
+                gridEl.style.display = "grid";
+            }else{
+                gridEl.style.display = "block";
+            }
+            
        
             for (let i = 1; i < 200; i++) {
                 try {//Found element by id
@@ -233,7 +236,7 @@ pageEncoding="UTF-8"%>
                         </div>
 
                     </div>
-                    <div class="DivOfRegs">
+                    <div class="DivOfRegs" id="DivOfRegs">
                         <c:forEach var="gpu" items="${gpus}">
                         <div class="foreachelement">
                             <div class="card text-white bg-dark mb-3" style="width: 18rem;" id="eachcard_${gpu.id}">
