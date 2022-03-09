@@ -12,8 +12,24 @@ public class Gpu {
     private Double price;
     private String type;
     private String imageurl;
+    private int idcomp;
 
-    public Gpu(int id, String modelname, String company, String year, Double memory, Double power, String socket, Double price, String type, String imageurl) {
+    public Gpu(int id, String modelname, String company, String year, Double memory, Double power, String socket, Double price, String type, String imageurl, int idcomp) {
+        this.id = id;
+        this.modelname = modelname;
+        this.company = company;
+        this.year = year;
+        this.memory = memory;
+        this.power = power;
+        this.socket = socket;
+        this.price = price;
+        this.type = type;
+        this.imageurl = imageurl;
+        this.idcomp = idcomp;
+    }
+    
+    public Gpu(int id, String modelname, String company, String year, Double memory, Double power, String socket, Double price, String type, String imageurl){
+        System.out.println("[WARNING] Missing idcomp argument");
         this.id = id;
         this.modelname = modelname;
         this.company = company;
@@ -109,6 +125,14 @@ public class Gpu {
 
     public void setImageurl(String imageurl) {
         this.imageurl = imageurl;
+    }
+
+    public int getIdcomp() {
+        return idcomp;
+    }
+
+    public void setIdcomp(int idcomp) {
+        this.idcomp = idcomp;
     }
 
     @Override

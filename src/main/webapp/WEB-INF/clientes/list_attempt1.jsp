@@ -16,6 +16,10 @@ pageEncoding="UTF-8"%>
             
         }
 
+        #createdimage {
+            width: 200px;
+            height: auto;
+        }
         .card-text {
 
             font-size: 16px;
@@ -120,57 +124,51 @@ pageEncoding="UTF-8"%>
         
         //LET ID FOR COMPANY TABLE
         var id = 0
-        var imageurl = ""
+        //var imageurl = ""
         function letID(id, company, imageId){
+
+            //FIRST TRY TO DELETE IF EXISTS
+            try{document.getElementById('createdimage').remove();}catch(e){console.log("[ERROR] ")}
+
             console.log('Let ID: ' + id)
             console.log('Let COMPANY: ' + company)
             var companymodelnameEl = document.getElementById('modalcompanyname');
             companymodelnameEl.innerText = company;
 
             var companyidEl = document.getElementById('modalcompanyid');
-            companyidEl.innerText = 'Company ID ' + id;
+            companyidEl.innerText ='Gpu ID ' + id + ' Company ID ' + imageId;
 
             console.log('ImageId: ' + imageId);
-            imageurl = '${companys.get(imageId)}';
-            imageurl = imageurl.innerText;
+            var imageurl = '${companys}';
+            
+            imageurl = imageurl.split('id='+imageId)[1];
+            console.log('ImageUrl: ' + imageurl);
+            imageurl = imageurl.split('}')[0];
+            console.log('ImageUrl: ' + imageurl);
+            imageurl = imageurl.split('imageurl=')[1];
+            //[1].split('id='+(imageId+1))[0];
 
             console.log('IMAGEURL: ' + imageurl);
+
+
+            var img = document.createElement('img');
+            img.src = imageurl;
+            img.id = 'createdimage';
+            document.getElementById('logoimage').appendChild(img);
+            //down.innerHTML = "Image Element Added."; 
 
         }
         
         
-        /*function download(filename, text) {
-
-            var filename = "download.txt";
-            var text = "Code from https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server";
-            var other = ""
-            //Read local data
-            fetch("C:/Users/Jaime/Documents/NetBeansProjects/mavenproject9/salida.txt")
-                .then(response => response.text())
-                .then(text => other = text)
-                
-
-
-            var element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-            element.setAttribute('download', filename);
-
-            element.style.display = 'none';
-            document.body.appendChild(element);
-
-            element.click();
-
-            document.body.removeChild(element);
-
-
-
-        }*/
 
 </script> 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <div id="logoimage">
+
+        </div>
         <div class="modal-header">
           <h5 class="modal-title" id="modalcompanyname">NOT WORKING</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -178,7 +176,6 @@ pageEncoding="UTF-8"%>
           </button>
         </div>
         <div class="modal-body" id="modalcompanyid">
-            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -250,8 +247,8 @@ pageEncoding="UTF-8"%>
                                                 <td class="content">
                                                     <!-- <a href="${pageContext.request.contextPath}/ServletController?accion=showCompany&id=${gpu.company}">${gpu.company}</a> -->
                                                     <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal" 
-                                                        onclick="letID('${gpu.id}','${gpu.company}','${gpu.id}')">
-                                                            ${gpu.company}
+                                                        onclick="letID('${gpu.id}','${gpu.company}','${gpu.idcomp}')">
+                                                            ${gpu.company} ${gpu.idcomp} 
                                                     </button>
                                                 </td>
 

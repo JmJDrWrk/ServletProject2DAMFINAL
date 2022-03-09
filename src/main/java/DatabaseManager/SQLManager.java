@@ -43,9 +43,9 @@ public class SQLManager {
             + "price=?,"
             + "type=?,"
             + "imageurl=?"
-            + "WHERE id =?";
+            + " WHERE id =?";
 
-    private static final String SQL_INSERT = "INSERT INTO gpus(modelname,company,year,memory,power,socket,price,type,imageurl) VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO gpus(modelname,company,year,memory,power,socket,price,type,imageurl,idcomp) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
     private static final String DELETE_GPU_BY_ID = "DELETE FROM gpus WHERE id =?";
 
@@ -77,6 +77,7 @@ public class SQLManager {
                     Double price = rs.getDouble("price");
                     String type = rs.getString("type");
                     String imageurl = rs.getString("imageurl");
+                    int idcomp = rs.getInt("idcomp");
 
                     if (imageurl.startsWith("./")) {
                         imageurl = imageurl.replace("./", imageBASE_NAME);
@@ -84,7 +85,7 @@ public class SQLManager {
                     if (imageurl.equals("default") || imageurl == "null") {
                         imageurl = "https://cdn-icons-png.flaticon.com/512/103/103085.png";
                     }
-                    Gpu newGpu = new Gpu(id, modelname, company, year, memory, power, socket, price, type, imageurl);
+                    Gpu newGpu = new Gpu(id, modelname, company, year, memory, power, socket, price, type, imageurl, idcomp);
 
                     // System.out.println("ImageURL -- " + newGpu.getImageurl());
 
@@ -174,10 +175,11 @@ public class SQLManager {
                     Double price = rs.getDouble("price");
                     String type = rs.getString("type");
                     String imageurl = rs.getString("imageurl");
+                    int idcomp = rs.getInt("idcomp");
 
                     imageurl = imageurl.replace("./", imageBASE_NAME);
 
-                    gpu = new Gpu(id, modelname, company, year, memory, power, socket, price, type, imageurl);
+                    gpu = new Gpu(id, modelname, company, year, memory, power, socket, price, type, imageurl, idcomp);
 
                     System.out.println("Graphic Card Found");
 
@@ -225,6 +227,7 @@ public class SQLManager {
             stmt.setDouble(7, gpu.getPrice());
             stmt.setString(8, gpu.getType());
             stmt.setString(9, gpu.getImageurl());
+            //stmt.setInt(10, gpu.getIdcomp());
             stmt.setInt(10, gpu.getId());
 
             System.out.println("Update using \n" + stmt);
@@ -256,6 +259,7 @@ public class SQLManager {
             stmt.setDouble(7, gpu.getPrice());
             stmt.setString(8, gpu.getType());
             stmt.setString(9, gpu.getImageurl());
+            stmt.setInt(10, gpu.getIdcomp());
 
             System.out.println("Insert using \n" + stmt);
             rows = stmt.executeUpdate();
@@ -326,6 +330,7 @@ public class SQLManager {
                     Double price = rs.getDouble("price");
                     String type = rs.getString("type");
                     String imageurl = rs.getString("imageurl");
+                    int idcomp = rs.getInt("idcomp");
 
                     if (imageurl.startsWith("./")) {
                         imageurl = imageurl.replace("./", imageBASE_NAME);
@@ -333,7 +338,7 @@ public class SQLManager {
                     if (imageurl.equals("default") || imageurl == "null") {
                         imageurl = "https://cdn-icons-png.flaticon.com/512/103/103085.png";
                     }
-                    Gpu newGpu = new Gpu(id, modelname, company, year, memory, power, socket, price, type, imageurl);
+                    Gpu newGpu = new Gpu(id, modelname, company, year, memory, power, socket, price, type, imageurl, idcomp);
 
                     // System.out.println("ImageURL -- " + newGpu.getImageurl());
 

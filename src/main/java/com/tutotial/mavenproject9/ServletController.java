@@ -157,6 +157,9 @@ public class ServletController extends HttpServlet {
                 String type = request.getParameter("type");
                 String imageurl = request.getParameter("imageurl");
                 
+                //[THIS LAUNCH AN ERROR]
+                //int idcomp = Integer.parseInt(request.getParameter("idcomp"));
+                
                 //Testing for encoding problems
                 String strabc1 = URLDecoder.decode ( imageurl, "UTF-8" );
                 String strabc2 = java.net.URLDecoder.decode(imageurl, "UTF-8");
@@ -221,8 +224,8 @@ public class ServletController extends HttpServlet {
             }  
             
         }else{System.out.println("[ERROR/WARNING] Untracked parameters at doPost() method");}
-        }catch(Exception e){System.out.println("[Error] getParameter() failed");}
-
+        }catch(Exception e){System.out.println("[Error] getParameter() failed");e.printStackTrace();}
+        
         //processRequest(request, response);
     }
 
