@@ -128,8 +128,10 @@ public class ServletController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("doPost() joined");
-     
-
+        
+        String rq = "";
+        try{rq=request.getParameter("user");}catch(Exception e){System.out.println("[ERROR] getParameter('user')");}
+        System.out.println("{user} " + rq);
         
         try{
             String request_value = request.getParameter("user");

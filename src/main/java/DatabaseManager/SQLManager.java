@@ -259,7 +259,10 @@ public class SQLManager {
             stmt.setDouble(7, gpu.getPrice());
             stmt.setString(8, gpu.getType());
             stmt.setString(9, gpu.getImageurl());
-            stmt.setInt(10, gpu.getIdcomp());
+            
+            //[ERROR] Related with foreign keys     
+            int IDCOMP = 7;
+            stmt.setInt(10, IDCOMP);
 
             System.out.println("Insert using \n" + stmt);
             rows = stmt.executeUpdate();

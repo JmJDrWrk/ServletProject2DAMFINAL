@@ -167,3 +167,7 @@ body {
     bottom: 100%;
   }
 }
+
+.nondecorated{
+  outline: none;
+}

@@ -265,7 +265,7 @@ pageEncoding="UTF-8"%>
                                                     <!-- <a href="${pageContext.request.contextPath}/ServletController?accion=showCompany&id=${gpu.company}">${gpu.company}</a> -->
                                                     <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal" 
                                                         onclick="letID('${gpu.id}','${gpu.company}','${gpu.idcomp}')">
-                                                            ${gpu.company} ${gpu.idcomp} 
+                                                            ${gpu.company}
                                                     </button>
                                                 </td>
 

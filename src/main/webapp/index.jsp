@@ -10,9 +10,40 @@
     </head>
     <body>
 
+        <script>
+          
+
+        </script>
+
         <div class="login-box">
           <h2>Login</h2>
+
           <form action="/mavenproject9/ServletController" method="post">
+
+            <div class="user-box">
+              <input type="text" name="user" required="">
+              <label>Username</label>
+            </div>
+            <div class="user-box">
+              <input type="password" name="pass" required="">
+              <label>Password</label>
+            </div>
+
+
+            <!-- <button type="submit" name="login" class="nondecorated"> -->
+              <a type="submit" name="login">      
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit
+              </a>
+            </button>
+
+            
+          </form>
+
+          <!-- <form action="/mavenproject9/ServletController" method="post">
             <div class="user-box">
               <input type="text" name="user" required="">
               <label>Username</label>
@@ -31,7 +62,9 @@
             </a>
 
           </form>
-
+          <form action="/mavenproject9/ServletController" method="post">
+            <button postData="postdatabtt">POST DATA</button>
+          </form> -->
 
         </div>
     </body>
