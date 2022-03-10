@@ -30,7 +30,7 @@ public class ConnectionManager {
         ds.setUrl(JDBC_URL);
         ds.setUsername(JDBC_USER);
         ds.setPassword(JDBC_PASS);
-        ds.setInitialSize(50); // Establecemos máx de 50 conexiones.
+        ds.setInitialSize(0); // Establecemos máx de 50 conexiones.
         return ds;        
     }
     

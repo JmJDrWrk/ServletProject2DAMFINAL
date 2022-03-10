@@ -100,7 +100,7 @@ response.setContentType("text/html; charset=UTF-8");
 
                     <a href="${pageContext.request.contextPath}/ServletController?accion=OneditGpu&event1=confirm" type="submit">
                     <button id="confirm_bt" type="submit" class="btn btn-success">Confirm</button></a> -->
-                    <button id="cancel_bt" type="submit" class="btn btn-warning" name="btt" value="cancel">Cancel</button>
+                    <button id="cancel_bt" type="submit" class="btn btn-warning"   name="btt" value="cancel" >Cancel</button>
                     <button id="confirm_bt" type="submit" class="btn btn-success"  name="btt" value="confirm" >Confirm</button>
                 </form>
 

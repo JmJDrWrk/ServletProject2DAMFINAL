@@ -9,7 +9,7 @@ html {
   }
   
   body {
-    background-color: #647a94;
+    background-color: #202020;
     height: 100vh;
   }
   
@@ -122,5 +122,5 @@ html {
   input[type="text"], textarea { 
     padding: 0;
     margin: 0;
-    width:250px; 
+
 }

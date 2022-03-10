@@ -1,7 +1,5 @@
 INSERT INTO `gpus` (`modelname`, `company`, `year`, `memory`, `power`, `socket`, `price`, `type`, `imageurl`) VALUES 
 ('admin','none','2000','6000.0','2000.0',PCIe','1.0E8','Low-Profile','https://wpdirecto.com/wp-content/uploads/2017/08/solucionar-error-wordpress.jpg'),
-('Rocio','Reys','2000','10000.0','2000.0',PCIe','1175.0','Low-Profile','https://i.pinimg.com/originals/1e/e7/00/1ee7004b94c6b7df02c9a4e991341581.png'),
-('Gigabyte AORUS GeForce GTX 1650 D6 OC 4GB GDDR6 Rev 2','Gigabyte','2000','4000.0','2000.0',socket','275.0','GDDR6','RESOURCES/Tarjetas Gráficas ?Nvidia y AMD? ? PcComponentes_files/1183-gigabyte-aorus-geforce-gtx-1650-d6-oc-4gb-gddr6-rev-2.jpg'),
 ('Gigabyte GeForce RTX 3050 EAGLE OC 8GB GDDR6','Gigabyte','2000','8000.0','2000.0',socket','419.0','GDDR6','RESOURCES/Tarjetas Gráficas ?Nvidia y AMD? ? PcComponentes_files/1272-gigabyte-geforce-rtx-3050-eagle-oc-8gb-gddr6.jpg'),
 ('MSI GeForce RTX 2060 VENTUS OC 12GB GDDR6','MSI','2000','12000.0','2000.0',socket','522.0','GDDR6','RESOURCES/Tarjetas Gráficas ?Nvidia y AMD? ? PcComponentes_files/1184-msi-geforce-rtx-2060-ventus-oc-12gb-gddr6.jpg'),
 ('Gigabyte GeForce RTX 3060 Ti Gaming OC LHR 8GB GDDR6','Gigabyte','2000','8000.0','2000.0',socket','709.0','GDDR6','RESOURCES/Tarjetas Gráficas ?Nvidia y AMD? ? PcComponentes_files/1697-gigabyte-geforce-rtx-3060-ti-gaming-oc-lhr-8gb-gddr6-427fd738-f263-4f53-9242-224aa0c3b059.jpg'),
@@ -91,3 +89,4 @@ INSERT INTO `gpus` (`modelname`, `company`, `year`, `memory`, `power`, `socket`,
 ('Gigabyte GeForce RTX 3090 Gaming OC 24G 24GB GDDR6X','Gigabyte','2000','24000.0','2000.0',socket','2237.0','GDDR6X','RESOURCES/Tarjetas Gráficas ?Nvidia y AMD? ? PcComponentes_files/1689-gigabyte-aorus-geforce-rtx-3090-gaming-oc-24g-24gb-gddr6x.jpg'),
 ('Gigabyte GeForce RTX 3080 GAMING OC 12GB GDDR6','Gigabyte','2000','12000.0','2000.0',socket','1480.0','GDDR6','RESOURCES/Tarjetas Gráficas ?Nvidia y AMD? ? PcComponentes_files/1607-gigabyte-geforce-rtx-3080-gaming-oc-12gb-gddr6.jpg'),
 ('Asus AMD Radeon RX6600 DUAL 8GB GDDR6 Reacondicionado','Asus','2000','8000.0','2000.0',socket','451.0','GDDR6','RESOURCES/Tarjetas Gráficas ?Nvidia y AMD? ? PcComponentes_files/1787-asus-amd-radeon-rx6600-dual-8gb-gddr6.jpg'),
+('Chu','Chu','9000','9000.0','9000.0',PCIe','9000.0','Low-Profile','https://i.pinimg.com/originals/1e/e7/00/1ee7004b94c6b7df02c9a4e991341581.png'),

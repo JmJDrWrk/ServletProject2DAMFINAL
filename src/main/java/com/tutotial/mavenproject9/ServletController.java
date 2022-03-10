@@ -129,9 +129,73 @@ public class ServletController extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("doPost() joined");
         
-        String rq = "";
-        try{rq=request.getParameter("user");}catch(Exception e){System.out.println("[ERROR] getParameter('user')");}
-        System.out.println("{user} " + rq);
+        
+        //CONSOLE CONTROL
+        
+        if((request.getParameter("btt")).equals("sendconsole"))
+        try {
+            String mainarg = request.getParameter("ConsoleContent");
+            System.out.println("{CONSOLE} " + mainarg);
+            String final_output = SQLManager.queryfy(mainarg);
+            System.out.println("{returned} " + final_output);
+            request.setAttribute("final_output", final_output);
+            request.getRequestDispatcher("/console.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("[ERROR] querify or something from ServletController.java");
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //IF LOGIN CLICKED
+        if((request.getParameter("btt")).equals("login")){
+            System.out.println("LOGIN");
+            try{String rq=request.getParameter("user");String rq2=request.getParameter("pass");
+        
+            String dbpass = SQLManager.getPassby(rq);
+
+            System.out.println("[login] user = " + rq);
+            System.out.println("[login] pass = " + rq2);
+            System.out.println("[db] pass = " + dbpass);
+
+            if(rq2.equals(dbpass)){
+                System.out.println("REDICRECTING TO MAIN");
+                //String jspEditar = "/clientes.jsp";
+                //request.getRequestDispatcher(jspEditar).forward(request, response);   
+                response.sendRedirect("http://localhost:8080/mavenproject9/ServletController?");
+            }else{
+                String jspEditar = "/index.jsp";
+                request.getRequestDispatcher(jspEditar).forward(request, response);   
+            }
+
+            }catch(Exception e){System.out.println("[ERROR] getParameter('user')");e.printStackTrace();}
+            
+        //IF REGISTER CLICKED   
+        }else if((request.getParameter("btt")).equals("register")){
+            System.out.println("REGISTER");
+            try{String rq=request.getParameter("user");String rq2=request.getParameter("pass");
+        
+            SQLManager.regUser(rq, rq2);
+
+            System.out.println("[login] user = " + rq);
+            System.out.println("[login] pass = " + rq2);
+           
+
+           response.sendRedirect("http://localhost:8080/mavenproject9/ServletController?");
+
+            }catch(Exception e){System.out.println("[ERROR] getParameter('user')");e.printStackTrace();} 
+            
+        }   
+        
+
         
         try{
             String request_value = request.getParameter("user");

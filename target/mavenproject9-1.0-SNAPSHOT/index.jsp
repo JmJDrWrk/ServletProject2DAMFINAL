@@ -7,11 +7,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="STYLES/index_style.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/4d79e072db.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
         <script>
-          
+
 
         </script>
 
@@ -31,15 +34,12 @@
 
 
             <!-- <button type="submit" name="login" class="nondecorated"> -->
-              <a type="submit" name="login">      
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Submit
-              </a>
-            </button>
+            <!-- <button type="button" class="btn btn-outline-success">Success</button>
+            <button  type="submit" name="login">Login</button>
+            <button  type="submit" name="register">Register</button> -->
 
+            <button class="btn btn-outline-success" type="submit"name="btt" value="login" >Login</button>
+            <button class="btn btn-outline-light" type="submit"  name="btt" value="register">Register</button>
             
           </form>
 

@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -376,7 +377,6 @@ public class SQLManager {
         return gpu_inserts;
     }
     
-    
     public static List<Company> getCompanys() {
 
         String imageBASE_NAME = "RESOURCES/";
@@ -428,4 +428,130 @@ public class SQLManager {
     }
     
     
+    //USERS DATABASES
+    private static final String SELECT_PASS_BY_NAME = "SELECT * FROM users WHERE username=?";
+    
+    private static final String INSERT_USER_BY_NMPS = "INSERT INTO users(name,username,pass) VALUES (?,?,?)";
+    
+    public static String getPassby(String username) throws SQLException{
+        System.out.println("Getting password from user " + username);
+        Connection conn = ConnectionManager.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String pass = null;
+        
+        
+        stmt = conn.prepareStatement(SELECT_PASS_BY_NAME);
+        stmt.setString(1, username);
+        rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            pass = rs.getString("pass");
+        }
+        
+        return pass;
+        
+    }
+    
+    public static void regUser(String username, String pass){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement(INSERT_USER_BY_NMPS);
+            String name = username + new Timestamp(new Date().getTime());
+            
+            stmt.setString(1, name);
+            stmt.setString(2, username);
+            stmt.setString(3, pass);
+
+            
+ 
+            System.out.println("Insert using \n" + stmt);
+            rows = stmt.executeUpdate();
+            System.out.println("[SUCCESS] new user inserted");
+        } catch (SQLException ex) {
+            System.out.println("[ERROR] new user insertion");
+            ex.printStackTrace(System.out);
+        } finally {
+
+            try {
+                conn.close();
+                conn.close();
+            } catch (SQLException ex) {
+                System.out.println("[ERROR] new user insertion conn exception");
+                Logger.getLogger(SQLManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+    
+    
+    
+    
+    //MAGIG QUERYS
+    public static String queryfy(String mainarg) throws SQLException{
+        
+        String final_output = "not loaded";
+        
+        Connection conn = ConnectionManager.getConnection();
+            
+        if(mainarg.contains("INSERT INTO")){
+            System.out.println("{querify} insert into mode");
+            PreparedStatement stmt = conn.prepareStatement(mainarg);
+            
+            try{
+                stmt.executeUpdate();final_output="INSERT SUCCESS\n\t"+mainarg;
+            }catch(Exception e){
+                System.out.println("[ERROR] querify insert into ");final_output="INSERT ERROR\n\t"+mainarg;
+            }
+            
+        }else if(mainarg.contains("SELECT")){
+            System.out.println("{querify} SELECT FROM mode");
+            PreparedStatement stmt = conn.prepareStatement(mainarg.split("#")[0]);
+            String[] props = mainarg.split("#")[1].split(",");
+            try{
+                String reg = null;
+                ResultSet rs = stmt.executeQuery();
+                int i =0;
+                int y = 0;
+                
+                //For each reg
+                while(rs.next()){
+                    System.out.println("i--> " + i);
+                    String columns = "(";
+                    
+                    //For each propertie of each reg
+                    for(String propertie: props){
+                        columns += rs.getObject(propertie) +",";
+                    }columns+=")";
+                    
+                    columns = columns.replace(",)",")");
+                    
+                    reg += columns + "\n";
+                    /*
+                    if(i==props.length-1){
+                        i=0;
+                        cout+="\n\nNEW OBJECT\n";
+                        System.out.println("props reset");
+                    }*/
+                    i++;
+                    y++;
+                }
+                final_output="[SELECT SUCCESS]\n"+mainarg+"\n\n"+reg+"\n\tnumber of elements returned: "+y
+                        +"rsvalues: " + i;
+            }catch(Exception e){
+                System.out.println("[ERROR] querify SELECT FROM ");final_output="SELECT ERROR\n\t"+mainarg;
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("mainarg="+mainarg);
+            System.out.println("{querify} main arg not valid");final_output="{querify} mainarg not valid";
+        }
+        
+        
+        return final_output;
+    }
 }
